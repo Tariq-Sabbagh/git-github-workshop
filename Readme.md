@@ -42,7 +42,7 @@ Working Directory  →  Staging Area  →  Commit History
 الرابط الرسمي لتحميل Git (Windows / macOS / Linux):  
 https://git-scm.com/downloads
 
-بعد التثبيت جرّب تتأكد:
+بعد التثبيت جرّب تتأكد من التيرمينال : 
 
 ```bash
 git --version
