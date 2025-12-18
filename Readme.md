@@ -33,7 +33,8 @@ Git يعتمد فكرة “لقطات” لحالة الملفات عند كل *
 
 ```text
 Working Directory  →  Staging Area  →  Commit History
-```
+```  
+<img src="assets/git-workflow.png" width="700">
 
 ---
 
@@ -70,6 +71,7 @@ git config --local user.email "you@example.com"
 |---|---|
 | `git init` | ينشئ مستودع Git جديد في المجلد الحالي (يضيف مجلد `.git`). |
 | `git status` | يعرض حالة الملفات: معدّلة؟ مضافة للـ staging؟ |
+| `git status -s` | يعرض حالة الملفات بشكل مختصر<br>يكون الخرج بجانب كل اسم ملف عمودين أحدهما يمثل منطقة العمل (الذي على اليمين) والآخر يمثل الإندكس |
 | `git add .` | يضيف التغييرات إلى **Staging Area** للتحضير للـ commit. |
 | `git commit -m "msg"` | يحفظ Snapshot للتغييرات الموجودة في staging مع رسالة توضّح الهدف. |
 
@@ -153,12 +155,23 @@ git merge feature-x
 ```
 
 ### أنواع شائعة
-- **Fast-Forward**: إذا كان `main` لم يتغير، Git فقط “يحرك المؤشر” للأمام بدون commit دمج منفصل.
-- **3-Way Merge**: إذا كان هناك تغييرات على الطرفين، Git ينشئ **Merge Commit**.
+- **Fast-Forward**: إذا كان `main` لم يتغير، Git فقط “يحرك المؤشر” للأمام بدون commit دمج منفصل.  
+
+| before merging | x | while merging | x | after merging |
+|---|--- |---|---|---|
+| <img src="assets/ff-before.png" width="400"> | :arrow_left: | <img src="assets/ff-merging.png" width="400"> | :arrow_left: | <img src="assets/ff-after.png" width="400"> |
+
+- **3-Way Merge**: إذا كان هناك تغييرات على الطرفين، Git ينشئ **Merge Commit**.  
+
+| before merging | x | while merging | x | after merging |
+|---|--- |---|---|---|
+| <img src="assets/3-way-before.png" width="400"> | :arrow_left: | <img src="assets/3-way-merging.png" width="400"> | :arrow_left: | <img src="assets/3-way-after.png" width="400"> |
+
 - **Squash Merge** (شائع على GitHub): يجمع عدة commits من البرانش في commit واحد عند الدمج (غالبًا من واجهة GitHub).
 
 ### الـ Conflict (تعارض)
-يصير لما نفس السطر/الجزء من الملف اتعدل بطريقتين مختلفتين في برانشين.
+يصير لما نفس السطر/الجزء من الملف اتعدل بطريقتين مختلفتين في برانشين.  
+<img src="assets/conflict.png" width="700">
 
 1. شغّل `git status` لتعرف الملفات المتعارضة.
 2. افتح الملفات وحل التعارضات (Git يضع علامات داخل الملف).
